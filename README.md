@@ -2,9 +2,10 @@
 
 
 ## At Home ELISS Push-up Machine
-This project showcases an at-home simulation of Singapore's IPPT ELISS Machine, with the goal of allowing NSFs and NSmen to remotely experience the push-up station.
-The ELISS machine is frequently feedbacked as inaccurate and may result in no-counts due to the user's push-up posture.
-As such, the *At Home ELISS Push-up Machine* aims to provide feedback regarding the user’s posture, with the goal of improving the user’s push up accuracy for the ELISS machine.
+This project showcases an at-home simulation of Singapore's IPPT ELISS Machine, with the goal of allowing NSFs and NSmen to remotely experience the push-up station, and additionally receive feedback on push-up posture.
+
+## Problem Statement
+In many military camps, the ELISS (Electronic IPPT Scoring System) machine is used to measure the quality and count of a person’s push-ups. However, users frequently feedback about the inaccuracy of the machine’s assessments, which may be attributable to the subtle variations in push-up form. These inaccuracies can often lead to frustration and unreliable performance metrics. Given the importance of proper push-up form, there is a need for an at-home solution for NSFs and NSmen to train and get acquainted with how the machine works, providing them with accurate and real-time feedback
 
 ## Devices/Components
 1. Raspberry Pi 3 Model B+
@@ -19,7 +20,7 @@ As such, the *At Home ELISS Push-up Machine* aims to provide feedback regarding 
 10. Firebase Database
 11. Flask Webpage
 
-## Project Progress / Timeline
+## Methodology / Project Timeline / Hardware Justification
 The initial idea of the project was thought up in Weeks 2-3 of this trimester.
 After consulting, the project was green-lit and we began preparations.
 
@@ -35,8 +36,8 @@ On the other hand, the use of *mediapipe* needed the latest versions of *Python*
 Therefore, we decided to use two *Raspberry Pis* in order to faciliate our requirements.
 
 With the use of *Message Queuing Telemetry Transport (MQTT)*, we are able to allow the two *Pis* to communicate and have each *Pi* be responsible for their own responsibilities.
-The older *Raspberry Pi 3 Model B+* has been imaged with the Bullseye OS, and has the *GrovePi+* connected to it, allowing the various Grove sensors to function properly.
-Contrarily, the *Raspberry Pi 5*, with a webcam connected to it as well as its improved hardware, allowed for the *opencv + mediapipe* pose estimation to have a higher performance.
+The older *Raspberry Pi 3 Model B+* has been imaged with the legacy Bullseye OS, and has the *GrovePi+* connected to it, allowing the various Grove sensors to function properly.
+Contrarily, the *Raspberry Pi 5*, with a webcam connected to it, as well as its improved hardware, allowed for the *opencv + mediapipe* pose estimation to have a higher performance.
 Now, the basic system architecture is met, and we are able to work on the program itself.
 
 ![At Home ELISS Push-up Machine Block Diagram](INF2009_BlockDiagram.png)
@@ -57,7 +58,7 @@ Furthermore, we used Firebase in order to store the data obtained from the user'
 
 On the dashboard side of things, we used Flask to create a basic web page in order to display the push-up and pose estimation data, which are feedback for the user's posture, providing them with insights on their push-up form and what bad postures are affecting their push-up accuracy.
 
-## Issues faced
+### Issues faced / Improved Methodology
 Throughout the project's progress, we were faced with multiple issues.
 
 One hardware issue we faced, was that after substantial amount of use of the *Grove* sensors, we found that our *Grove - Ultrasonic Ranger* was faulty and had issues when the process was running on high load. This led to a replacement in the component to be the Cytron - Ultrasonic Ranging Module SR04P instead.
