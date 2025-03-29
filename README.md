@@ -9,7 +9,7 @@ This project showcases an at-home simulation of Singapore's IPPT ELISS Machine, 
 ## Problem Statement
 In many military camps, the ELISS (Electronic IPPT Scoring System) machine is used to measure the quality and count of a person’s push-ups. However, users frequently feedback about the inaccuracy of the machine’s assessments, which may be attributable to the subtle variations in push-up form. These inaccuracies can often lead to frustration and unreliable performance metrics. Given the importance of proper push-up form, there is a need for an at-home solution for NSFs and NSmen to train and get acquainted with how the machine works, providing them with accurate and real-time feedback
 
-## Devices/Components
+## Devices / Components
 1. Raspberry Pi 3 Model B+
 2. Raspberry Pi 5
 3. GrovePi+
