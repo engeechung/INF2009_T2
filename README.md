@@ -19,6 +19,7 @@ In many military camps, the ELISS (Electronic IPPT Scoring System) machine is us
 7. Grove - Buzzer
 8. Grove - Red LED
 9. Grove - Green LED
+10. Speaker
 10. Firebase Database
 11. Flask Webpage
 
