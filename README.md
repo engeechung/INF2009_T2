@@ -43,7 +43,7 @@ The older *Raspberry Pi 3 Model B+* has been imaged with the legacy Bullseye OS,
 Contrarily, the *Raspberry Pi 5*, with a webcam connected to it, as well as its improved hardware, allowed for the *opencv + mediapipe* pose estimation to have a higher performance.
 Now, the basic system architecture is met, and we are able to work on the program itself.
 
-![At Home ELISS Push-up Machine Block Diagram](INF2009_BlockDiagram.png)
+
 
 Bulk of the time spent on the project was working out how the components functioned and synced with each other, in order to provide the user with an accurate and comfortable solution to practice their push-up form on.
 
