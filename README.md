@@ -65,7 +65,7 @@ Throughout the project's progress, we were faced with multiple issues.
 
 One hardware issue we faced, was that after substantial amount of use of the *Grove* sensors, we found that our *Grove - Ultrasonic Ranger* was faulty and had issues when the process was running on high load. This led to a replacement in the component to be the *Cytron - Ultrasonic Ranging Module SR04P* instead.
 
-The main issue we had a hard time figuring out was how the push-up logic worked in order for both *Pis* to sync up and provide the user with an accurate and comfortable experience. Initially, when using just the data from the pose estimation, we determined the user to be two states, namely, 'Good Posture', 'Bad Posture'. The angles determined from the pose estimation landmarks were calibrated to determine the user's state. 
+The main issue we had a hard time figuring out was how the push-up logic worked in order for both *Pis* to sync up and provide the user with an accurate and comfortable experience. Initially, when using just the data from the pose estimation, we determined the user to be two states, namely, 'Good Posture' and 'Bad Posture'. The angles determined from the pose estimation landmarks were calibrated to determine the user's state. 
 
 For example, when the user is in a proper push-up form, they are expected to have their arms and back straight, and with our landmarks, the elbow and hip angle would have to be calibrated towards an angle of a straight line. Likewise, when the user is moving to the bottom of their push-up, the elbow and shoulder angle would also have to be calibrated. However, this meant that when the user was not at an acceptable apex or bottom of their push-up, they would always be in a 'Bad Posture', which is not the intention of our project.
 
@@ -77,9 +77,9 @@ The *Ultrasonic Ranger* would capture the distance between the user's chest and 
 The workload allocation was not simple, as there were only two physical *Pis*, with MQTT requiring a physical meet up in order to test and make progress on.
 As such, we mainly worked on the project as we met up for lab sessions, with additional meetups when integrating multiple components.
 
-| Name | Component | Remarks |
-| --- | --- | --- |
-| Samuel Song Yuhao | Project Management, Pose Estimation Functionality | Leader
+| Name | Component |
+| --- | --- |
+| Samuel Song Yuhao | Project Management, Pose Estimation Functionality |
 | Koh Zhe Huai Malcolm | Push-up Functionality, MQTT, Data Connectivity to Firebase | 
 | Chung Eng Ee | Sensors/Grove Components, MQTT |
 | Toh Cheng Kiat Brendan | Dashboard & Firebase Implementation |
