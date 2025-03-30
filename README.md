@@ -85,3 +85,6 @@ As such, we mainly worked on the project as we met up for lab sessions, with add
 | Chung Eng Ee | Sensors/Grove Components, MQTT |
 | Toh Cheng Kiat Brendan | Dashboard & Firebase Implementation |
 | Low Yue Qian | Pose Estimation Integration with Camera OpenCV Functionality | 
+
+## Website Dashboard Github Repo
+Link: https://github.com/bren37/INF2009_T2
