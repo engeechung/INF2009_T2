@@ -1,15 +1,16 @@
-# INF2009_T2
+# INF2009_T2 
 
+---
 
-## At Home ELISS Push-up Machine
+## 🏋️‍♂️ At Home ELISS Push-up Machine
 This project showcases an at-home simulation of Singapore's IPPT ELISS Machine, with the goal of allowing NSFs and NSmen to remotely experience the push-up station, and additionally receive feedback on push-up posture.
 
 ![At Home ELISS Push-up Machine User Flow Diagram](INF2009_AHEPM_Userflow.png)
 
-## Problem Statement
+## ❓ Problem Statement
 In many military camps, the ELISS (Electronic IPPT Scoring System) machine is used to measure the quality and count of a person’s push-ups. However, users frequently feedback about the inaccuracy of the machine’s assessments, which may be attributable to the subtle variations in push-up form. These inaccuracies can often lead to frustration and unreliable performance metrics. Given the importance of proper push-up form, there is a need for an at-home solution for NSFs and NSmen to train and get acquainted with how the machine works, providing them with accurate and real-time feedback
 
-## Devices / Components
+## 🧱 Devices / Components
 1. Raspberry Pi 3 Model B+
 2. Raspberry Pi 5
 3. GrovePi+
@@ -20,10 +21,10 @@ In many military camps, the ELISS (Electronic IPPT Scoring System) machine is us
 8. Grove - Red LED
 9. Grove - Green LED
 10. Speaker
-10. Firebase Database
-11. Flask Webpage
+11. Firebase Database
+12. Flask Webpage
 
-## Methodology / Project Timeline / Hardware Justification
+## 🛠️ Methodology / Project Timeline / Hardware Justification
 The initial idea of the project was thought up in Weeks 2-3 of this trimester.
 After consulting, the project was green-lit and we began preparations.
 
@@ -61,7 +62,7 @@ Furthermore, we used *Firebase* in order to store the data obtained from the use
 
 On the dashboard side of things, we used *Flask* to create a basic web page in order to display the push-up and pose estimation data, which are feedback for the user's posture, providing them with insights on their push-up form and what bad postures are affecting their push-up accuracy.
 
-### Issues faced / Improved Methodology
+### 🚧 Issues faced / Improved Methodology
 Throughout the project's progress, we were faced with multiple issues.
 
 One hardware issue we faced, was that after substantial amount of use of the *Grove* sensors, we found that our *Grove - Ultrasonic Ranger* was faulty and had issues when the process was running on high load. This led to a replacement in the component to be the *Cytron - Ultrasonic Ranging Module SR04P* instead.
@@ -74,7 +75,78 @@ In order for our program to simulate the IPPT ELISS machine, this logic would ha
 
 The *Ultrasonic Ranger* would capture the distance between the user's chest and the ground, with the apex and bottom of the push-up as key baselines used to determine the user's push-up form. If the user were to not fully go down, not properly straighten their arms when returning to a rest position, or if their hips are sagging or up in the air, it would be considered as a bad posture. Now, the camera module will capture the screenshot at which this bad posture is detected, and when the pose estimation module determines what issues form this bad posture, the data will then be stored in *Firebase* to be used in the dashboard.
 
-## Workload Allocation
+---
+
+# 💻 Flask Dashboard + ML-Powered Tracker
+
+The Flask web dashboard allows users to view their push-up stats, monitor form feedback, and predict future performance using machine learning.
+
+## 🧰 Set up Virtual Environment
+1. `python -m venv venv`
+2. `venv\Scripts\activate`
+
+## 📦 Libraries used
+1. Flask
+2. Flask-WTF
+3. firebase_admin
+4. Werkzeug
+
+## ⚙️ Install Libraries
+1. `pip install -r requirements.txt`
+
+## ▶️ Running the Application
+1. Ensure virtual environment is activated
+   - `venv\Scripts\activate`
+2. run `py app.py` to start the application
+3. Navigate to `http://127.0.0.1:5000` in browser
+   - test account:
+       - Username: `testing`
+       - Password: `testing`
+    
+## 💡 Key Features
+### 🏠 Main Page
+- **Pushup History Chart**: Display a line graph of past history of user push-ups record.
+- **Latest Attempt Summary**: Includes the most recent push-up recording with attempt number, number of pushups, timestamp and the bad form images captured during the attempt.
+
+### 🙍‍♂️ Profile Page
+- **User Information Overview**: Display the user's name, username, date of birth, weight and height
+- **Attempt History Table**: Includes a table of past push-up attempts, showing the number of push-ups completed and the timestamp of each attempt.
+
+### ✏️ Edit Profile Page
+- **User Details Update**: Allows users to edit their name, weight and height through the "Edit Profile" button.
+
+### 🔍 View Attempt Details Page
+- **Detailed Attempt Insights**: Allow users to view more details in each attempt through the "View Details" button.
+
+### 🤖 ML-Powered Pushup Progress Tracker
+- **Machine Learning Model**: Utilizes a trained regression model to forecast how the user's push-up count will improve over time.
+- **Goal Setting**: Takes into account the user's entered push-up goal, personal data (weight, age, etc.), and historical attempt records.
+- **Interactive Predictions**: Generates a chart predicting daily progress toward their goal, providing an estimated timeline and intermediate milestones.
+- **Seamless Integration**: The prediction is automatically displayed under the “Push-up Prediction” section on the Home page once the user is logged in and have completed at least one push-up attempt.
+
+
+## 📅 Dataset Generation
+Due to the lack of publicly available datasets for push-up progression, we generated our own dataset programmatically using generate_dataset.py. This script simulates realistic user push-up behavior over time, factoring in gradual improvement.
+
+## ⚠️ Issues Faced / Future Work (Dashboard)
+
+While the dashboard successfully integrates data from the system and displays push-up statistics and predictions, there are a few limitations and areas for future improvement:
+- **Synthetic Dataset**: The dataset used for training the machine learning model was generated internally. As a result, it may not fully reflect real-world user behavior or push-up progression patterns.
+- **Lack of Real User Feedback**: We were unable to conduct surveys or collect real user data due to time constraints. This means the training data might be overly linear or idealised.
+- **Model Accuracy**: Because the model is trained on synthetic data, its predictions might not generalise well to real users with different fitness levels or inconsistent habits.
+
+**Future Work**:
+- Conduct real-user testing and surveys to collect actual push-up session data.
+- Integrate anomaly detection or adaptability into the ML model to accommodate varied progress patterns.
+- Expand feedback mechanisms to include visual posture correction tips based on user-specific trends
+
+## 🧪 Troubleshooting
+- Ensure that `credentials.json` file path is updated to your file path location
+  - `credentials.json` file is located in credentials folder
+
+---
+
+## 👥 Workload Allocation
 The workload allocation was not simple, as there were only two physical *Pis*, with MQTT requiring a physical meet up in order to test and make progress on.
 As such, we mainly worked on the project as we met up for lab sessions, with additional meetups when integrating multiple components.
 
@@ -84,4 +156,4 @@ As such, we mainly worked on the project as we met up for lab sessions, with add
 | Koh Zhe Huai Malcolm | Push-up Functionality, MQTT, Data Connectivity to Firebase | 
 | Chung Eng Ee | Sensors/Grove Components, MQTT |
 | Toh Cheng Kiat Brendan | Dashboard & Firebase Implementation |
-| Low Yue Qian | Pose Estimation Integration with Camera OpenCV Functionality | 
+| Low Yue Qian | Pose Estimation Integration with Camera OpenCV Functionality, Pushup Progress Tracker Integrated with Classical Machine Learning Techniques | 
