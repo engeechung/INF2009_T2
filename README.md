@@ -124,9 +124,8 @@ The Flask web dashboard allows users to view their push-up stats, monitor form f
 - **Interactive Predictions**: Generates a chart predicting daily progress toward their goal, providing an estimated timeline and intermediate milestones.
 - **Seamless Integration**: The prediction is automatically displayed under the “Push-up Prediction” section on the Home page once the user is logged in and have completed at least one push-up attempt.
 
-
 ## 📅 Dataset Generation
-Due to the lack of publicly available datasets for push-up progression, we generated our own dataset programmatically using generate_dataset.py. This script simulates realistic user push-up behavior over time, factoring in gradual improvement.
+Due to the lack of publicly available datasets for push-up progression, we generated our own dataset programmatically using `generate_dataset.py`. This script simulates realistic user push-up behavior over time, factoring in gradual improvement.
 
 ## ⚠️ Issues Faced / Future Work (Dashboard)
 
