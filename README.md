@@ -7,6 +7,19 @@ This project showcases an at-home simulation of Singapore's IPPT ELISS Machine, 
 
 ![At Home ELISS Push-up Machine User Flow Diagram](INF2009_AHEPM_Userflow.png)
 
+## ⚙️ Pi Setup
+### 
+1. Pi 3 B+ to be imaged with `raspios_oldstable_armhf-2023-05-03`
+2. Set up virtual environment on both Pis
+3. Pi 3 B+ `pip install grovepi`
+4. Pi 3 B+ `curl -kL dexterindustries.com/update_grovepi | bash`
+5. Pi 5 `pip install opencv-python`
+6. Pi 5`pip install mediapipe`
+7. Webcam to be connected to the Pi 5
+8. GrovePi+ to be connected to the Pi 3, with all sensors in their respective digital ports (refer to code file)
+9. Cytron Ultrasonic Ranger to be specifically SR04P to allow compatibility with Pi's 3.3V input.
+
+
 ## ❓ Problem Statement
 In many military camps, the ELISS (Electronic IPPT Scoring System) machine is used to measure the quality and count of a person’s push-ups. However, users frequently feedback about the inaccuracy of the machine’s assessments, which may be attributable to the subtle variations in push-up form. These inaccuracies can often lead to frustration and unreliable performance metrics. Given the importance of proper push-up form, there is a need for an at-home solution for NSFs and NSmen to train and get acquainted with how the machine works, providing them with accurate and real-time feedback
 
@@ -44,7 +57,7 @@ The older *Raspberry Pi 3 Model B+* has been imaged with the legacy Bullseye OS,
 Contrarily, the *Raspberry Pi 5*, with a webcam connected to it, as well as its improved hardware, allowed for the *opencv + mediapipe* pose estimation to have a higher performance.
 Now, the basic system architecture is met, and we are able to work on the program itself.
 
-![At Home ELISS Push-up Machine Block Diagram](INF2009_BlockDiagram1.png)
+![At Home ELISS Push-up Machine Block Diagram](INF2009_BlockDiagram2.png)
 
 Bulk of the time spent on the project was working out how the components functioned and synced with each other, in order to provide the user with an accurate and comfortable solution to practice their push-up form on.
 
@@ -74,6 +87,11 @@ For example, when the user is in a proper push-up form, they are expected to hav
 In order for our program to simulate the IPPT ELISS machine, this logic would have to be improved. We experimented with multiple methods, and with much time spent troubleshooting, we determined that the secondary data input of the *Ultrasonic Ranger* would supplement the posture estimation well. When the camera module detects that the user is doing a push-up, it categorizes the motion as 'up' and 'down', and the *Grove* module will use this state to determine the function of the *Ultrasonic Ranger*. 
 
 The *Ultrasonic Ranger* would capture the distance between the user's chest and the ground, with the apex and bottom of the push-up as key baselines used to determine the user's push-up form. If the user were to not fully go down, not properly straighten their arms when returning to a rest position, or if their hips are sagging or up in the air, it would be considered as a bad posture. Now, the camera module will capture the screenshot at which this bad posture is detected, and when the pose estimation module determines what issues form this bad posture, the data will then be stored in *Firebase* to be used in the dashboard.
+
+**Future Work**:
+- **Expansion to Other Exercises** - Adapt the pose estimation to track exercises like sit-ups, squats, or planks, making the system a full-body fitness companion rather than just a push-up machine.
+- **Enhanced Sensor Suite** - Incorporate additional sensors (e.g., accelerometers, gyroscopes, or pressure mats) to capture more nuanced form details and provide more precise feedback on body alignment.
+- **Gamification & User Engagement** - Introduce game-like elements, such as setting daily/weekly challenge goals, achievements, or leader boards to encourage consistent practice and user motivation.
 
 ---
 
