@@ -22,18 +22,12 @@ baseline_bottom_distance = None
 TOLERANCE = 5
 MAX_DISTANCE = 300
 MIN_DISTANCE = 0
-
-# Add these constants at the top with other global variables
 DIRECTION_CHANGE_THRESHOLD = 2  # Minimum cm change to count as direction change
 CONSECUTIVE_WRONG_READINGS = 3  # Number of consecutive readings needed to confirm direction change
-
-# Add these variables with other global variables
 current_direction = None
 previous_direction = None
 consecutive_wrong_down = 0  # Track consecutive wrong readings when going down
 consecutive_wrong_up = 0    # Track consecutive wrong readings when going up
-
-# Flags for tracking push-up state
 pushup_in_progress = False
 bad_posture_flag = False
 pushup_depth_reached = False
@@ -44,6 +38,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 
+# Function to obtain distance using ultrasonic ranging module
 def get_distance():
     """Measure distance using ultrasonic sensor."""
     GPIO.output(TRIG, True)
@@ -61,13 +56,15 @@ def get_distance():
     distance = (pulse_duration * 34300) / 2  # Speed of sound is 343 m/s
 
     return round(distance, 2)
-    
+
+# Function to obtain current direction message from Pi 5
 def current_direction_subscribe(x):
     global current_direction, reached_top
     current_direction = x
     if x == "down":
         reached_top = False
-    
+
+# Function to record baseline top distance when user is doing their first push-up
 def record_baseline_top():
     """Stores top (apex) position of push-up."""
     global baseline_top_distance
@@ -77,7 +74,8 @@ def record_baseline_top():
             baseline_top_distance = distance
             print(f"Baseline Top Distance: {baseline_top_distance} cm")
             break
-            
+
+# Function to record baseline bottom distance when user is doing their first push-up
 def record_baseline_bottom():
     """Stores bottom position of push-up."""
     global baseline_bottom_distance
@@ -87,14 +85,16 @@ def record_baseline_bottom():
             baseline_bottom_distance = distance
             print(f"Baseline Bottom Distance: {baseline_bottom_distance} cm")
             break
-            
+
+# Function to reset baseline values
 def reset_baseline():
     """Resets baseline values."""
     global baseline_top_distance, baseline_bottom_distance
     baseline_top_distance = None
     baseline_bottom_distance = None
     time.sleep(0.01)
-    
+
+# Function to check for push-up posture through ultrasonic ranger readings
 def check_pushup():
     global pushup_enabled, current_direction, previous_direction, bad_posture_flag
     global consecutive_wrong_down, consecutive_wrong_up, reached_top
@@ -157,7 +157,8 @@ def check_pushup():
         previous_distance = distance
         previous_direction = current_direction
         time.sleep(0.15)  # Slightly longer delay to reduce noise
-        
+
+# Function to start monitoring push-ups
 def start_pushup_monitoring():
     """Starts monitoring push-ups in a separate thread."""
     global pushup_enabled, pushup_thread
@@ -167,6 +168,7 @@ def start_pushup_monitoring():
         pushup_thread.start()
         print("Push-up monitoring started.")
 
+# Function to stop monitoring push-ups
 def stop_pushup_monitoring():
     """Stops monitoring push-ups."""
     global pushup_enabled
