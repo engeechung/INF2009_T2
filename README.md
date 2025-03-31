@@ -119,7 +119,7 @@ The Flask web dashboard allows users to view their push-up stats, monitor form f
 - **Detailed Attempt Insights**: Allow users to view more details in each attempt through the "View Details" button.
 
 ### 🤖 ML-Powered Pushup Progress Tracker
-- **Machine Learning Model**: Utilizes a trained regression model to forecast how the user's push-up count will improve over time.
+- **Machine Learning Model**: Trained a Random Forest regression model to predict how the user's push-up count will improve over time and how many days it would take for the user to reach their push up goal (indicated in their profile).
 - **Goal Setting**: Takes into account the user's entered push-up goal, personal data (weight, age, etc.), and historical attempt records.
 - **Interactive Predictions**: Generates a chart predicting daily progress toward their goal, providing an estimated timeline and intermediate milestones.
 - **Seamless Integration**: The prediction is automatically displayed under the “Push-up Prediction” section on the Home page once the user is logged in and have completed at least one push-up attempt.
