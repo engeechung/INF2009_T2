@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recording Details - Push-up Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #fff;
+            color: #007bff;
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        header nav a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #0056b3;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .recording-details {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .recording-details h2 {
+            color: #28a745;
+            text-align: left;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .recording-details p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .recording-details strong {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .image-container img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            .image-container img {
+                max-width: 100%;
+            }
+            header {
+                padding-left: 15px;
+            }
+            header nav a {
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('profile') }}" class="back-link">Back to Profile</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Session Details</h1>
+
+    <div class="session-details">
+        
+        <div class="detail-item">
+            <span class="detail-label">Timestamp:</span>
+            {{ session.timestamp }}
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Attempt Number:</span>
+            {{ session.stats.total_attempts }}
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Total Pushups:</span>
+            {{ session.stats.total_pushups }}
+        </div>
+        
+        <div class="detail-item">
+            <span class="detail-label">Success Rate:</span>
+            {{ session.stats.success_rate }}%
+        </div>
+        
+        <div class="detail-item">
+            <span class="detail-label">Session Duration:</span>
+            {{ session.stats.session_duration }} seconds
+        </div>
+        
+        
+
+        <div class="form-issues">
+            <h3>Form Issues</h3>
+            {% if form_issues %}
+                {% for issue in form_issues %}
+                    <div class="form-issue">
+                        <h4>Issues: {{ issue.description }}</h4>
+                        {% if issue.image %}
+                            <div class="bad-form-images">
+                                <img src="data:image/jpeg;base64,{{ issue.image }}" 
+                                     alt="Bad form: {{ issue.description }}"
+                                     title="{{ issue.description }}">
+                            </div>
+                        {% else %}
+                            <p>No image available for this issue</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% else %}
+                <p>No form issues recorded for this session.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
