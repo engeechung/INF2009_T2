@@ -1,22 +1,7 @@
-"""Main File for At Home ELISS Push-up Machine
-   MQTT Subscriber (Raspberry Pi 3 B+ [Bullseye OS] & GrovePi+)
-   Sensors: Ultrasonic Ranger, Buzzer, LCD RGB Backlight, Red LED, Green LED"""
-
-"""Instructions for setting up Pi 3 & GrovePi+ (to be moved to GitHub readme.md)
-   Pi 3 B+ to be imaged with raspios_oldstable_armhf-2023-05-03
-   https://downloads.raspberrypi.com/raspios_oldstable_armhf/images/
-   Due to GrovePi+ constraints, imaged username must be 'pi'.
-   
-   Pi 3 B+ to be set up with the following commands:
-   sudo apt update
-   curl -kL dexterindustries.com/update_grovepi | bash
-   https://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/
-"""
-
 import paho.mqtt.client as mqtt
 import time
 import buzzer as buzzer
-import ranger_280325 as ranger
+import ranger as ranger
 import backlight as backlight
 import led as led
 
@@ -25,6 +10,7 @@ BROKER = "172.20.10.4"
 TOPIC = "pushup/status"
 DIRECTION_TOPIC = "pushup/direction"
 
+# Global Variable
 current_direction = None
 
 # Function to connect to MQTT topic
