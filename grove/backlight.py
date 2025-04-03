@@ -85,7 +85,15 @@ def display_ready():
 
 # Function to start countdown
 def start_timer():
-    global time_remaining, is_counting_down, pushup_count
+    global time_remaining, is_counting_down, pushup_count, special_message, special_message_active
+    # Reset timer and count variables first
+    time_remaining = 60
+    pushup_count = 0
+    is_counting_down = False
+    special_message = None
+    special_message_active = False
+
+    # Now set the countdown active and start the timer thread
     is_counting_down = True
     message1 = ""
     message2 = ""
@@ -107,19 +115,6 @@ def start_timer():
     # Run timer in a separate thread
     timer_thread = threading.Thread(target=timer_loop)
     timer_thread.start()
-
-    # Final message + Reset values when timer ends
-    if time_remaining == 0:
-        message1 = "End of"
-        message2 = "Time!"
-        text = f"Time: {time_remaining} | {message1}\nCount: {pushup_count} | {message2}"
-        setText(text)
-
-    time_remaining = 60
-    pushup_count = 0
-    is_counting_down = False
-    special_message = None
-    special_message_active = False
 
 # Function to update push-up count
 def count_pushup(count):
